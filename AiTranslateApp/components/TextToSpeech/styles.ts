@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection:'column',
+    gap:10,
     padding: 10,
     backgroundColor: '#f5f5f5',
   },
@@ -10,10 +12,21 @@ export default StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
+    marginTop:50,
     marginBottom: 10,
     paddingVertical: 5,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
+  },
+    
+  headerMenuBtn:{
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    gap:10,
+    margin: 10,
+  },
+  headerMenuTitle:{
+    fontSize:20,
   },
   headerButton: {
     flexDirection: 'row',

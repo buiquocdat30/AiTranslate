@@ -12,6 +12,7 @@ const TextToSpeech = () => {
   const [isBreakDropdownVisible, setBreakDropdownVisible] = useState(false);
   const [isQualityDropdownVisible, setQualityDropdownVisible] = useState(false);
   const [isSearchReplaceVisible, setSearchReplaceVisible] = useState(false);
+  const [showHeaderMenu, setShowHeaderMenu] = useState(false);
 
   const [selectedVoice, setSelectedVoice] = useState('HN - Ngọc Huyền');
   const [selectedSpeed, setSelectedSpeed] = useState('1x Bình thường');
@@ -79,154 +80,174 @@ const TextToSpeech = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {/* 1.1 Nút chọn giọng đọc */}
-        <TouchableOpacity style={styles.headerButton} onPress={() => setVoiceModalVisible(true)}>
-          <Text style={styles.headerButtonText}>HN - Ngọc Huyền</Text>
-          <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
+        {/* Nút icon để mở menu header */}
+        <TouchableOpacity onPress={() => setShowHeaderMenu(true)} style={styles.headerMenuBtn}>
+          <MaterialIcons name="menu" size={30} color="#333"
+          />
+          <Text style={styles.headerMenuTitle}>Menu Hiệu Chỉnh</Text>
         </TouchableOpacity>
+        {/* Modal chứa toàn bộ header menu */}
         <Modal
-          animationType="slide"
+          animationType="fade"
           transparent={true}
-          visible={isVoiceModalVisible}
-          onRequestClose={() => setVoiceModalVisible(false)}
+          visible={showHeaderMenu}
+          onRequestClose={() => setShowHeaderMenu(false)}
         >
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>Chọn giọng đọc</Text>
-              <TextInput style={styles.searchBar} placeholder="Tìm kiếm" />
-              <FlatList
-                data={voices}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                  <TouchableOpacity
-                    style={[styles.voiceItem, selectedVoice === item.name && styles.selectedVoiceItem]}
-                    onPress={() => {
-                      setSelectedVoice(item.name);
-                      setVoiceModalVisible(false);
-                    }}
-                  >
-                    <Text style={styles.voiceName}>{item.name}</Text>
-                    <Text style={styles.voiceDescription}>{item.description}</Text>
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={[styles.header, { backgroundColor: '#fff', borderRadius: 10, padding: 10, width: '90%' }]}>
+              {/* 1.1 Nút chọn giọng đọc */}
+              <TouchableOpacity style={styles.headerButton} onPress={() => setVoiceModalVisible(true)}>
+                <Text style={styles.headerButtonText}>HN - Ngọc Huyền</Text>
+                <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
+              </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isVoiceModalVisible}
+                onRequestClose={() => setVoiceModalVisible(false)}
+              >
+                <View style={styles.modalOverlay}>
+                  <View style={styles.modalContent}>
+                    <Text style={styles.modalTitle}>Chọn giọng đọc</Text>
+                    <TextInput style={styles.searchBar} placeholder="Tìm kiếm" />
+                    <FlatList
+                      data={voices}
+                      keyExtractor={(item) => item.id}
+                      renderItem={({ item }) => (
+                        <TouchableOpacity
+                          style={[styles.voiceItem, selectedVoice === item.name && styles.selectedVoiceItem]}
+                          onPress={() => {
+                            setSelectedVoice(item.name);
+                            setVoiceModalVisible(false);
+                          }}
+                        >
+                          <Text style={styles.voiceName}>{item.name}</Text>
+                          <Text style={styles.voiceDescription}>{item.description}</Text>
+                        </TouchableOpacity>
+                      )}
+                    />
+                    <TouchableOpacity style={styles.closeButton} onPress={() => setVoiceModalVisible(false)}>
+                      <Text style={styles.closeButtonText}>Đóng</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
+
+              {/* 1.2 Nút điều chỉnh tốc độ đọc */}
+              <TouchableOpacity style={styles.headerButton} onPress={() => setSpeedDropdownVisible(!isSpeedDropdownVisible)}>
+                <Text style={styles.headerButtonText}>{selectedSpeed}</Text>
+                <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
+              </TouchableOpacity>
+              {isSpeedDropdownVisible && (
+                <View style={styles.dropdown}>
+                  {speeds.map((speed) => (
+                    <TouchableOpacity key={speed} style={styles.dropdownItem} onPress={() => { setSelectedSpeed(speed); setSpeedDropdownVisible(false); }}>
+                      <Text style={styles.dropdownItemText}>{speed}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              )}
+
+              {/* 1.3 Nút tải tệp lên */}
+              <TouchableOpacity style={styles.headerButton}>
+                <MaterialIcons name="cloud-upload" size={20} color="#333" />
+                <Text style={styles.headerButtonText}>Tải tệp lên</Text>
+              </TouchableOpacity>
+
+              {/* 1.4 Nút thay đổi định dạng audio */}
+              <TouchableOpacity style={styles.headerButton} onPress={() => setFormatDropdownVisible(!isFormatDropdownVisible)}>
+                <Text style={styles.headerButtonText}>{selectedFormat}</Text>
+                <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
+              </TouchableOpacity>
+              {isFormatDropdownVisible && (
+                <View style={styles.dropdown}>
+                  {formats.map((format) => (
+                    <TouchableOpacity key={format} style={styles.dropdownItem} onPress={() => { setSelectedFormat(format); setFormatDropdownVisible(false); }}>
+                      <Text style={styles.dropdownItemText}>{format}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              )}
+
+              {/* 1.5 Nút tùy chỉnh thời gian ngắt nghỉ */}
+              <TouchableOpacity style={styles.headerButton} onPress={() => setBreakDropdownVisible(!isBreakDropdownVisible)}>
+                <Text style={styles.headerButtonText}>{selectedBreak}</Text>
+                <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
+              </TouchableOpacity>
+              {isBreakDropdownVisible && (
+                <View style={styles.dropdown}>
+                  {breaks.map((_break) => (
+                    <TouchableOpacity key={_break} style={styles.dropdownItem} onPress={() => { setSelectedBreak(_break); setBreakDropdownVisible(false); }}>
+                      <Text style={styles.dropdownItemText}>{_break}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              )}
+
+              {/* 1.6 Nút điều chỉnh chất lượng âm thanh */}
+              <TouchableOpacity style={styles.headerButton} onPress={() => setQualityDropdownVisible(!isQualityDropdownVisible)}>
+                <Text style={styles.headerButtonText}>{selectedQuality}</Text>
+                <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
+              </TouchableOpacity>
+              {isQualityDropdownVisible && (
+                <View style={styles.dropdown}>
+                  {qualities.map((quality) => (
+                    <TouchableOpacity key={quality} style={styles.dropdownItem} onPress={() => { setSelectedQuality(quality); setQualityDropdownVisible(false); }}>
+                      <Text style={styles.dropdownItemText}>{quality}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              )}
+
+              {/* 1.7 Nút thêm nhạc nền */}
+              <TouchableOpacity style={styles.headerButton}>
+                <MaterialIcons name="music-note" size={20} color="#333" />
+                <Text style={styles.headerButtonText}>Thêm nhạc nền</Text>
+              </TouchableOpacity>
+
+              {/* 1.8 Nút điều chỉnh âm lượng nhạc nền */}
+              <TouchableOpacity style={styles.headerButton}>
+                <MaterialIcons name="volume-up" size={20} color="#333" />
+                <Text style={styles.headerButtonText}>Âm lượng</Text>
+              </TouchableOpacity>
+
+              {/* 1.9 Khung tìm kiếm và thay thế */}
+              <TouchableOpacity style={styles.headerButton} onPress={() => setSearchReplaceVisible(!isSearchReplaceVisible)}>
+                <MaterialIcons name="search" size={20} color="#333" />
+                <Text style={styles.headerButtonText}>Tìm và thay thế</Text>
+              </TouchableOpacity>
+              {isSearchReplaceVisible && (
+                <View style={styles.searchReplaceContainer}>
+                  <TextInput
+                    style={styles.searchReplaceInput}
+                    placeholder="Tìm kiếm"
+                    value={searchText}
+                    onChangeText={setSearchText}
+                  />
+                  <TextInput
+                    style={styles.searchReplaceInput}
+                    placeholder="Thay thế"
+                    value={replaceText}
+                    onChangeText={setReplaceText}
+                  />
+                  <TouchableOpacity style={styles.replaceButton} onPress={() => {
+                    const newText = inputText.replace(new RegExp(searchText, 'g'), replaceText);
+                    setInputText(newText);
+                    setSearchText('');
+                    setReplaceText('');
+                    setSearchReplaceVisible(false);
+                  }}>
+                    <Text style={styles.replaceButtonText}>Thay thế</Text>
                   </TouchableOpacity>
-                )}
-              />
-              <TouchableOpacity style={styles.closeButton} onPress={() => setVoiceModalVisible(false)}>
-                <Text style={styles.closeButtonText}>Đóng</Text>
+                </View>
+              )}
+              {/* Nút đóng menu header */}
+              <TouchableOpacity onPress={() => setShowHeaderMenu(false)} style={{ alignSelf: 'center', marginTop: 10 }}>
+                <Text style={{ color: '#007bff', fontWeight: 'bold' }}>Đóng menu</Text>
               </TouchableOpacity>
             </View>
           </View>
         </Modal>
-
-        {/* 1.2 Nút điều chỉnh tốc độ đọc */}
-        <TouchableOpacity style={styles.headerButton} onPress={() => setSpeedDropdownVisible(!isSpeedDropdownVisible)}>
-          <Text style={styles.headerButtonText}>{selectedSpeed}</Text>
-          <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
-        </TouchableOpacity>
-        {isSpeedDropdownVisible && (
-          <View style={styles.dropdown}>
-            {speeds.map((speed) => (
-              <TouchableOpacity key={speed} style={styles.dropdownItem} onPress={() => {setSelectedSpeed(speed); setSpeedDropdownVisible(false);}}>
-                <Text style={styles.dropdownItemText}>{speed}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        )}
-
-        {/* 1.3 Nút tải tệp lên */}
-        <TouchableOpacity style={styles.headerButton}>
-          <MaterialIcons name="cloud-upload" size={20} color="#333" />
-          <Text style={styles.headerButtonText}>Tải tệp lên</Text>
-        </TouchableOpacity>
-
-        {/* 1.4 Nút thay đổi định dạng audio */}
-        <TouchableOpacity style={styles.headerButton} onPress={() => setFormatDropdownVisible(!isFormatDropdownVisible)}>
-          <Text style={styles.headerButtonText}>{selectedFormat}</Text>
-          <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
-        </TouchableOpacity>
-        {isFormatDropdownVisible && (
-          <View style={styles.dropdown}>
-            {formats.map((format) => (
-              <TouchableOpacity key={format} style={styles.dropdownItem} onPress={() => {setSelectedFormat(format); setFormatDropdownVisible(false);}}>
-                <Text style={styles.dropdownItemText}>{format}</Text>
-              </TouchableOpacity>
-            ))}
-
-            
-          </View>
-        )}
-
-        {/* 1.5 Nút tùy chỉnh thời gian ngắt nghỉ */}
-        <TouchableOpacity style={styles.headerButton} onPress={() => setBreakDropdownVisible(!isBreakDropdownVisible)}>
-          <Text style={styles.headerButtonText}>{selectedBreak}</Text>
-          <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
-        </TouchableOpacity>
-        {isBreakDropdownVisible && (
-          <View style={styles.dropdown}>
-            {breaks.map((_break) => (
-              <TouchableOpacity key={_break} style={styles.dropdownItem} onPress={() => {setSelectedBreak(_break); setBreakDropdownVisible(false);}}>
-                <Text style={styles.dropdownItemText}>{_break}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        )}
-
-        {/* 1.6 Nút điều chỉnh chất lượng âm thanh */}
-        <TouchableOpacity style={styles.headerButton} onPress={() => setQualityDropdownVisible(!isQualityDropdownVisible)}>
-          <Text style={styles.headerButtonText}>{selectedQuality}</Text>
-          <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
-        </TouchableOpacity>
-        {isQualityDropdownVisible && (
-          <View style={styles.dropdown}>
-            {qualities.map((quality) => (
-              <TouchableOpacity key={quality} style={styles.dropdownItem} onPress={() => {setSelectedQuality(quality); setQualityDropdownVisible(false);}}>
-                <Text style={styles.dropdownItemText}>{quality}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        )}
-
-        {/* 1.7 Nút thêm nhạc nền */}
-        <TouchableOpacity style={styles.headerButton}>
-          <MaterialIcons name="music-note" size={20} color="#333" />
-          <Text style={styles.headerButtonText}>Thêm nhạc nền</Text>
-        </TouchableOpacity>
-
-        {/* 1.8 Nút điều chỉnh âm lượng nhạc nền */}
-        <TouchableOpacity style={styles.headerButton}>
-          <MaterialIcons name="volume-up" size={20} color="#333" />
-          <Text style={styles.headerButtonText}>Âm lượng</Text>
-        </TouchableOpacity>
-
-        {/* 1.9 Khung tìm kiếm và thay thế */}
-        <TouchableOpacity style={styles.headerButton} onPress={() => setSearchReplaceVisible(!isSearchReplaceVisible)}>
-          <MaterialIcons name="search" size={20} color="#333" />
-          <Text style={styles.headerButtonText}>Tìm và thay thế</Text>
-        </TouchableOpacity>
-        {isSearchReplaceVisible && (
-          <View style={styles.searchReplaceContainer}>
-            <TextInput
-              style={styles.searchReplaceInput}
-              placeholder="Tìm kiếm"
-              value={searchText}
-              onChangeText={setSearchText}
-            />
-            <TextInput
-              style={styles.searchReplaceInput}
-              placeholder="Thay thế"
-              value={replaceText}
-              onChangeText={setReplaceText}
-            />
-            <TouchableOpacity style={styles.replaceButton} onPress={() => {
-                const newText = inputText.replace(new RegExp(searchText, 'g'), replaceText);
-                setInputText(newText);
-                setSearchText('');
-                setReplaceText('');
-                setSearchReplaceVisible(false);
-            }}>
-              <Text style={styles.replaceButtonText}>Thay thế</Text>
-            </TouchableOpacity>
-          </View>
-        )}
       </View>
       <View style={styles.divider} />
 
