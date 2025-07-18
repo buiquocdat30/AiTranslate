@@ -82,8 +82,7 @@ const TextToSpeech = () => {
       <View style={styles.header}>
         {/* Nút icon để mở menu header */}
         <TouchableOpacity onPress={() => setShowHeaderMenu(true)} style={styles.headerMenuBtn}>
-          <MaterialIcons name="menu" size={30} color="#333"
-          />
+          <MaterialIcons name="menu" size={30} color="#333" />
           <Text style={styles.headerMenuTitle}>Menu Hiệu Chỉnh</Text>
         </TouchableOpacity>
         {/* Modal chứa toàn bộ header menu */}
@@ -93,22 +92,23 @@ const TextToSpeech = () => {
           visible={showHeaderMenu}
           onRequestClose={() => setShowHeaderMenu(false)}
         >
-          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)', justifyContent: 'center', alignItems: 'center' }}>
-            <View style={[styles.header, { backgroundColor: '#fff', borderRadius: 10, padding: 10, width: '90%' }]}>
+          <View style={styles.menuModalOverlay}>
+            <View style={styles.menuModalContent}>
               {/* 1.1 Nút chọn giọng đọc */}
               <TouchableOpacity style={styles.headerButton} onPress={() => setVoiceModalVisible(true)}>
-                <Text style={styles.headerButtonText}>HN - Ngọc Huyền</Text>
+                <Text style={styles.headerButtonText}><Text>Chọn giọng đọc:</Text> HN - Ngọc Huyền</Text>
                 <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
               </TouchableOpacity>
+              {/* Modal chọn giọng đọc */}
               <Modal
                 animationType="slide"
                 transparent={true}
                 visible={isVoiceModalVisible}
                 onRequestClose={() => setVoiceModalVisible(false)}
               >
-                <View style={styles.modalOverlay}>
-                  <View style={styles.modalContent}>
-                    <Text style={styles.modalTitle}>Chọn giọng đọc</Text>
+                <View style={styles.voiceModalOverlay}>
+                  <View style={styles.voiceModalContent}>
+                    <Text style={styles.voiceModalTitle}>Chọn giọng đọc</Text>
                     <TextInput style={styles.searchBar} placeholder="Tìm kiếm" />
                     <FlatList
                       data={voices}
@@ -135,7 +135,7 @@ const TextToSpeech = () => {
 
               {/* 1.2 Nút điều chỉnh tốc độ đọc */}
               <TouchableOpacity style={styles.headerButton} onPress={() => setSpeedDropdownVisible(!isSpeedDropdownVisible)}>
-                <Text style={styles.headerButtonText}>{selectedSpeed}</Text>
+                <Text style={styles.headerButtonText}><Text>Chọn tốc độ đọc:</Text> {selectedSpeed}</Text>
                 <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
               </TouchableOpacity>
               {isSpeedDropdownVisible && (
@@ -150,13 +150,14 @@ const TextToSpeech = () => {
 
               {/* 1.3 Nút tải tệp lên */}
               <TouchableOpacity style={styles.headerButton}>
+                <Text style={[styles.headerButtonText,{marginRight:10} ]}>Tải tệp lên</Text> 
                 <MaterialIcons name="cloud-upload" size={20} color="#333" />
-                <Text style={styles.headerButtonText}>Tải tệp lên</Text>
+
               </TouchableOpacity>
 
               {/* 1.4 Nút thay đổi định dạng audio */}
               <TouchableOpacity style={styles.headerButton} onPress={() => setFormatDropdownVisible(!isFormatDropdownVisible)}>
-                <Text style={styles.headerButtonText}>{selectedFormat}</Text>
+                <Text style={styles.headerButtonText}>Chọn định dạng xuất file: {selectedFormat}</Text>
                 <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
               </TouchableOpacity>
               {isFormatDropdownVisible && (
@@ -171,7 +172,7 @@ const TextToSpeech = () => {
 
               {/* 1.5 Nút tùy chỉnh thời gian ngắt nghỉ */}
               <TouchableOpacity style={styles.headerButton} onPress={() => setBreakDropdownVisible(!isBreakDropdownVisible)}>
-                <Text style={styles.headerButtonText}>{selectedBreak}</Text>
+                <Text style={styles.headerButtonText}>Tuỳ chỉnh thời gian ngắt nghỉ: {selectedBreak}</Text>
                 <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
               </TouchableOpacity>
               {isBreakDropdownVisible && (
@@ -186,7 +187,7 @@ const TextToSpeech = () => {
 
               {/* 1.6 Nút điều chỉnh chất lượng âm thanh */}
               <TouchableOpacity style={styles.headerButton} onPress={() => setQualityDropdownVisible(!isQualityDropdownVisible)}>
-                <Text style={styles.headerButtonText}>{selectedQuality}</Text>
+                <Text style={styles.headerButtonText}>Tuỳ chỉnh chất lượng âm thanh: {selectedQuality}</Text>
                 <MaterialIcons name="arrow-drop-down" size={20} color="#333" />
               </TouchableOpacity>
               {isQualityDropdownVisible && (
@@ -201,20 +202,23 @@ const TextToSpeech = () => {
 
               {/* 1.7 Nút thêm nhạc nền */}
               <TouchableOpacity style={styles.headerButton}>
+              <Text style={[styles.headerButtonText,{marginRight:8}]}>Thêm nhạc nền</Text>
                 <MaterialIcons name="music-note" size={20} color="#333" />
-                <Text style={styles.headerButtonText}>Thêm nhạc nền</Text>
+                
               </TouchableOpacity>
 
               {/* 1.8 Nút điều chỉnh âm lượng nhạc nền */}
               <TouchableOpacity style={styles.headerButton}>
+              <Text style={[styles.headerButtonText,{marginRight:8}]}>Âm lượng</Text>
                 <MaterialIcons name="volume-up" size={20} color="#333" />
-                <Text style={styles.headerButtonText}>Âm lượng</Text>
+                
               </TouchableOpacity>
 
               {/* 1.9 Khung tìm kiếm và thay thế */}
               <TouchableOpacity style={styles.headerButton} onPress={() => setSearchReplaceVisible(!isSearchReplaceVisible)}>
+              <Text style={[styles.headerButtonText,{marginRight:8}]}>Tìm và thay thế</Text>
                 <MaterialIcons name="search" size={20} color="#333" />
-                <Text style={styles.headerButtonText}>Tìm và thay thế</Text>
+                
               </TouchableOpacity>
               {isSearchReplaceVisible && (
                 <View style={styles.searchReplaceContainer}>
@@ -242,14 +246,14 @@ const TextToSpeech = () => {
                 </View>
               )}
               {/* Nút đóng menu header */}
-              <TouchableOpacity onPress={() => setShowHeaderMenu(false)} style={{ alignSelf: 'center', marginTop: 10 }}>
-                <Text style={{ color: '#007bff', fontWeight: 'bold' }}>Đóng menu</Text>
+              <TouchableOpacity onPress={() => setShowHeaderMenu(false)} style={styles.closeButton}>
+                <Text style={styles.closeButtonText}>Đóng menu</Text>
               </TouchableOpacity>
             </View>
           </View>
         </Modal>
       </View>
-      <View style={styles.divider} />
+      {/* <View style={styles.divider} /> */}
 
       {/* 2. Phần Nội dung */}
       {/* Phần nội dung bao gồm một khung nhập văn bản và một menu dưới cùng với thông tin và nút chuyển đổi. */}
@@ -268,18 +272,18 @@ const TextToSpeech = () => {
           {/* Thẻ thông báo nhỏ về số ký tự đang dùng */}
           <View style={styles.infoCard}>
             <Text style={styles.infoText}>Số ký tự đang dùng: {estimatedCharacters}</Text>
-          </View>
-          {/* Thẻ thông báo nhỏ về thời gian audio dự kiến */}
-          <View style={styles.infoCard}>
+            {/* Thẻ thông báo nhỏ về thời gian audio dự kiến */}
             <Text style={styles.infoText}>Độ dài audio dự kiến: {formattedDuration}</Text>
           </View>
+          
+          
           {/* Nút chuyển văn bản */}
           <TouchableOpacity style={styles.convertButton} onPress={handleConvertText}>
             <Text style={styles.convertButtonText}>Chuyển văn bản</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.divider} />
+      {/* <View style={styles.divider} /> */}
 
       {/* 3. Phần Footer của Component */}
       {/* Phần footer hiển thị danh sách các file đã chuyển đổi của người dùng. */}

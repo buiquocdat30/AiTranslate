@@ -18,7 +18,13 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
-} as IconMapping;
+  'speaker.wave.2.fill': 'volume-up',
+  'mic.fill': 'mic',
+  'music.note': 'music-note',
+  'volume.up': 'volume-up',
+  'search': 'search',
+  'cloud.upload': 'file-upload',
+} as unknown as IconMapping;
 
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.

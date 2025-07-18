@@ -1,36 +1,47 @@
 import { StyleSheet } from 'react-native';
 
+// ====== BIẾN MÀU ======
+const VAR_BTN_CLOSE = '#007bff';
+
 export default StyleSheet.create({
+  // ====== CONTAINER ======
   container: {
     flex: 1,
-    flexDirection:'column',
-    gap:10,
+    flexDirection: 'column',
+    gap: 10,
     padding: 10,
     backgroundColor: '#f5f5f5',
   },
+  divider: {
+    height: 1,
+    backgroundColor: '#eee',
+    marginVertical: 10,
+  },
+
+  // ====== HEADER ======
   header: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    marginTop:50,
+    marginTop: 50,
     marginBottom: 10,
     paddingVertical: 5,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },
-    
-  headerMenuBtn:{
+  headerMenuBtn: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    gap:10,
+    gap: 10,
     margin: 10,
   },
-  headerMenuTitle:{
-    fontSize:20,
+  headerMenuTitle: {
+    fontSize: 20,
   },
   headerButton: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent:'space-between',
     backgroundColor: '#fff',
     padding: 8,
     borderRadius: 5,
@@ -44,13 +55,29 @@ export default StyleSheet.create({
     fontSize: 14,
     color: '#333',
   },
-  modalOverlay: {
+
+  // ====== MODALS ======
+  // Modal tổng menu hiệu chỉnh
+  menuModalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  menuModalContent: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+    width: '90%',
+  },
+  // Modal chọn giọng đọc
+  voiceModalOverlay: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
-  modalContent: {
+  voiceModalContent: {
     width: '90%',
     maxHeight: '80%',
     backgroundColor: '#fff',
@@ -58,7 +85,7 @@ export default StyleSheet.create({
     padding: 20,
     alignItems: 'center',
   },
-  modalTitle: {
+  voiceModalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 15,
@@ -91,13 +118,15 @@ export default StyleSheet.create({
   closeButton: {
     marginTop: 20,
     padding: 10,
-    backgroundColor: '#007bff',
+    alignItems: 'center',
+    backgroundColor: VAR_BTN_CLOSE,
     borderRadius: 5,
   },
   closeButtonText: {
     color: '#fff',
     fontWeight: 'bold',
   },
+  // Dropdown chung cho các lựa chọn
   dropdown: {
     position: 'absolute',
     backgroundColor: '#fff',
@@ -105,7 +134,7 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     zIndex: 1000,
-    top: 45, // Điều chỉnh vị trí hiển thị dropdown
+    top: 45,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -143,18 +172,15 @@ export default StyleSheet.create({
     backgroundColor: '#28a745',
     padding: 8,
     borderRadius: 5,
-    marginLeft: 5,
+    marginLeft: 0,
     marginBottom: 5,
   },
   replaceButtonText: {
     color: '#fff',
     fontWeight: 'bold',
   },
-  divider: {
-    height: 1,
-    backgroundColor: '#eee',
-    marginVertical: 10,
-  },
+
+  // ====== CONTENT ======
   content: {
     flex: 1,
   },
@@ -199,6 +225,8 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+
+  // ====== FOOTER ======
   footer: {
     marginTop: 10,
     paddingVertical: 10,
@@ -252,5 +280,4 @@ export default StyleSheet.create({
     color: '#007bff',
     fontWeight: 'bold',
   },
-
 }); 

@@ -34,24 +34,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="converte"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Converte',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="chevron.left.forwardslash.chevron.right" color={color} />, // icon code
         }}
       />
       <Tabs.Screen
         name="text-to-speech"
         options={{
           title: 'Text to Speech',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="speaker.wave.2.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="speaker.wave.2.fill" color={color} />, // icon loa
         }}
       />
       <Tabs.Screen
         name="speech-to-text"
         options={{
           title: 'Speech to Text',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="mic.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="mic.fill" color={color} />, // icon micro
         }}
       />
     </Tabs>
