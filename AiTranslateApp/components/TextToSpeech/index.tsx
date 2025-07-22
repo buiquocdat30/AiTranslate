@@ -79,8 +79,19 @@ const TextToSpeech = () => {
 
   return (
     <View style={styles.container}>
+
+
       <View style={styles.header}>
+
+        <Text style={styles.headerTitle}>Đây là tên APP</Text>
         {/* Nút icon để mở menu header */}
+
+      </View>
+      {/* <View style={styles.divider} /> */}
+
+      {/* 2. Phần Nội dung */}
+      {/* Phần nội dung bao gồm một khung nhập văn bản và một menu dưới cùng với thông tin và nút chuyển đổi. */}
+      <View style={styles.content}>
         <TouchableOpacity onPress={() => setShowHeaderMenu(true)} style={styles.headerMenuBtn}>
           <MaterialIcons name="menu" size={30} color="#333" />
           <Text style={styles.headerMenuTitle}>Menu Hiệu Chỉnh</Text>
@@ -150,7 +161,7 @@ const TextToSpeech = () => {
 
               {/* 1.3 Nút tải tệp lên */}
               <TouchableOpacity style={styles.headerButton}>
-                <Text style={[styles.headerButtonText,{marginRight:10} ]}>Tải tệp lên</Text> 
+                <Text style={[styles.headerButtonText, { marginRight: 10 }]}>Tải tệp lên</Text>
                 <MaterialIcons name="cloud-upload" size={20} color="#333" />
 
               </TouchableOpacity>
@@ -202,23 +213,23 @@ const TextToSpeech = () => {
 
               {/* 1.7 Nút thêm nhạc nền */}
               <TouchableOpacity style={styles.headerButton}>
-              <Text style={[styles.headerButtonText,{marginRight:8}]}>Thêm nhạc nền</Text>
+                <Text style={[styles.headerButtonText, { marginRight: 8 }]}>Thêm nhạc nền</Text>
                 <MaterialIcons name="music-note" size={20} color="#333" />
-                
+
               </TouchableOpacity>
 
               {/* 1.8 Nút điều chỉnh âm lượng nhạc nền */}
               <TouchableOpacity style={styles.headerButton}>
-              <Text style={[styles.headerButtonText,{marginRight:8}]}>Âm lượng</Text>
+                <Text style={[styles.headerButtonText, { marginRight: 8 }]}>Âm lượng</Text>
                 <MaterialIcons name="volume-up" size={20} color="#333" />
-                
+
               </TouchableOpacity>
 
               {/* 1.9 Khung tìm kiếm và thay thế */}
               <TouchableOpacity style={styles.headerButton} onPress={() => setSearchReplaceVisible(!isSearchReplaceVisible)}>
-              <Text style={[styles.headerButtonText,{marginRight:8}]}>Tìm và thay thế</Text>
+                <Text style={[styles.headerButtonText, { marginRight: 8 }]}>Tìm và thay thế</Text>
                 <MaterialIcons name="search" size={20} color="#333" />
-                
+
               </TouchableOpacity>
               {isSearchReplaceVisible && (
                 <View style={styles.searchReplaceContainer}>
@@ -252,12 +263,6 @@ const TextToSpeech = () => {
             </View>
           </View>
         </Modal>
-      </View>
-      {/* <View style={styles.divider} /> */}
-
-      {/* 2. Phần Nội dung */}
-      {/* Phần nội dung bao gồm một khung nhập văn bản và một menu dưới cùng với thông tin và nút chuyển đổi. */}
-      <View style={styles.content}>
         {/* 2.1. Phần text area để nhập nội dung văn bản cần đọc */}
         <TextInput
           style={styles.textArea}
@@ -275,8 +280,8 @@ const TextToSpeech = () => {
             {/* Thẻ thông báo nhỏ về thời gian audio dự kiến */}
             <Text style={styles.infoText}>Độ dài audio dự kiến: {formattedDuration}</Text>
           </View>
-          
-          
+
+
           {/* Nút chuyển văn bản */}
           <TouchableOpacity style={styles.convertButton} onPress={handleConvertText}>
             <Text style={styles.convertButtonText}>Chuyển văn bản</Text>

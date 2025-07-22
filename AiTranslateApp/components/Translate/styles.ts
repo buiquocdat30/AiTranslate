@@ -1,0 +1,27 @@
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#f5f5f5' },
+  header: { backgroundColor: '#2196f3', paddingTop: 40, paddingBottom: 16, alignItems: 'center', position: 'relative' },
+  headerTitle: { color: '#fff', fontSize: 24, fontWeight: 'bold' },
+  langRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10 },
+  langBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', padding: 10, borderRadius: 8, minWidth: 120, justifyContent: 'center', marginHorizontal: 5 },
+  langText: { fontSize: 18, color: '#333', fontWeight: 'bold' },
+  swapBtn: { backgroundColor: '#e3f2fd', borderRadius: 50, padding: 8, marginHorizontal: 5 },
+  inputBox: { backgroundColor: '#fff', borderRadius: 10, marginHorizontal: 10, padding: 10, marginBottom: 10, elevation: 2 },
+  input: { fontSize: 18, minHeight: 60, color: '#333' },
+  inputActions: { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 5 },
+  inputIcon: { marginHorizontal: 4 },
+  translateBtn: { backgroundColor: '#2196f3', borderRadius: 6, alignSelf: 'flex-end', marginTop: 8, paddingVertical: 8, paddingHorizontal: 18 },
+  translateBtnText: { color: '#fff', fontWeight: 'bold', fontSize: 16 },
+  resultBox: { backgroundColor: '#fff', borderRadius: 10, marginHorizontal: 10, padding: 10, marginBottom: 10, elevation: 2 },
+  resultText: { fontSize: 18, color: '#333', marginBottom: 4 },
+  resultActions: { flexDirection: 'row', justifyContent: 'flex-end' },
+  multiResultBox: { flex: 1, marginHorizontal: 10 },
+  multiResultItem: { backgroundColor: '#fff', borderRadius: 10, padding: 10, marginBottom: 10, elevation: 1 },
+  provider: { fontWeight: 'bold', fontSize: 16, color: '#222' },
+  providerResult: { fontSize: 15, color: '#555', marginBottom: 4 },
+  bottomBar: { flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingVertical: 10, backgroundColor: '#fff', borderTopWidth: 1, borderTopColor: '#eee' },
+  bottomBtn: { alignItems: 'center' },
+  bottomBtnText: { color: '#2196f3', fontWeight: 'bold', marginTop: 2 },
+}); 

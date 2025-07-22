@@ -9,8 +9,11 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     gap: 10,
-    padding: 10,
     backgroundColor: '#f5f5f5',
+  },
+  appTitle: {
+    fontSize: 20,
+
   },
   divider: {
     height: 1,
@@ -19,21 +22,23 @@ export default StyleSheet.create({
   },
 
   // ====== HEADER ======
+
   header: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    backgroundColor: '#2196f3',
+    paddingTop: 40,
+    paddingBottom: 16,
     alignItems: 'center',
-    marginTop: 50,
-    marginBottom: 10,
-    paddingVertical: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    position: 'relative'
+  },
+  headerTitle: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold'
   },
   headerMenuBtn: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
     gap: 10,
-    margin: 10,
   },
   headerMenuTitle: {
     fontSize: 20,
@@ -41,7 +46,7 @@ export default StyleSheet.create({
   headerButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     backgroundColor: '#fff',
     padding: 8,
     borderRadius: 5,
@@ -183,6 +188,7 @@ export default StyleSheet.create({
   // ====== CONTENT ======
   content: {
     flex: 1,
+    padding: 10,
   },
   textArea: {
     flex: 1,
@@ -215,13 +221,13 @@ export default StyleSheet.create({
     color: '#555',
   },
   convertButton: {
-    backgroundColor: '#ffc107',
+    backgroundColor: '#2196f3',
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 5,
   },
   convertButtonText: {
-    color: '#333',
+    color: '#fff',
     fontWeight: 'bold',
     fontSize: 16,
   },
@@ -229,6 +235,7 @@ export default StyleSheet.create({
   // ====== FOOTER ======
   footer: {
     marginTop: 10,
+    padding: 10,
     paddingVertical: 10,
     borderTopWidth: 1,
     borderTopColor: '#eee',
