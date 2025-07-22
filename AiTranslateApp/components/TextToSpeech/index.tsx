@@ -92,9 +92,9 @@ const TextToSpeech = () => {
       {/* 2. Phần Nội dung */}
       {/* Phần nội dung bao gồm một khung nhập văn bản và một menu dưới cùng với thông tin và nút chuyển đổi. */}
       <View style={styles.content}>
-        <TouchableOpacity onPress={() => setShowHeaderMenu(true)} style={styles.headerMenuBtn}>
+        <TouchableOpacity onPress={() => setShowHeaderMenu(true)} style={styles.contentMenuBtn}>
           <MaterialIcons name="menu" size={30} color="#333" />
-          <Text style={styles.headerMenuTitle}>Menu Hiệu Chỉnh</Text>
+          <Text style={styles.contentMenuTitle}>Menu Hiệu Chỉnh</Text>
         </TouchableOpacity>
         {/* Modal chứa toàn bộ header menu */}
         <Modal

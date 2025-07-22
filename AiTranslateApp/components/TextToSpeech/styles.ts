@@ -35,12 +35,12 @@ export default StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold'
   },
-  headerMenuBtn: {
+  contentMenuBtn: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
     gap: 10,
   },
-  headerMenuTitle: {
+  contentMenuTitle: {
     fontSize: 20,
   },
   headerButton: {
